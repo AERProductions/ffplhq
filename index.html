@@ -417,6 +417,84 @@
       color: var(--dark-silver);
     }
 
+    /* ── RESULT SCREENS CAROUSEL ── */
+    .results-showcase {
+      background: var(--black);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+    .results-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 2rem 0 2rem;
+    }
+    .rtab {
+      background: transparent;
+      border: 2px solid var(--blue);
+      color: var(--blue);
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      padding: 0.5rem 1.75rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .rtab.active, .rtab:hover {
+      background: var(--blue);
+      color: var(--black);
+    }
+    .results-carousel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .rcarousel-track {
+      flex: 1;
+      min-height: 200px;
+    }
+    .rcarousel-img {
+      width: 100%;
+      max-width: 800px;
+      border-radius: 4px;
+      border: 1px solid rgba(42,170,233,0.25);
+      display: block;
+      margin: 0 auto;
+    }
+    .rcarousel-arrow {
+      background: transparent;
+      border: 2px solid rgba(42,170,233,0.4);
+      color: var(--ice);
+      font-size: 2rem;
+      line-height: 1;
+      padding: 0.25rem 0.6rem;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: border-color 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+    .rcarousel-arrow:hover { border-color: var(--blue); color: var(--blue); }
+    .rcarousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+    }
+    .rdot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(42,170,233,0.3);
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s;
+    }
+    .rdot.active { background: var(--blue); }
+
     /* ── FOOTER ── */
     footer {
       background: var(--black);
@@ -751,6 +829,107 @@
       <a href="https://discord.gg/YwFpyAq2KK" target="_blank" class="btn-secondary">Discord for Help</a>
     </div>
   </section>
+
+  <div class="divider"><img src="assets/ffpl_header_strip.png" alt="" aria-hidden="true" /></div>
+
+  <!-- RESULT SCREENS -->
+  <section class="results-showcase" id="results">
+    <p class="section-label">◈ MATCH RESULTS</p>
+    <h2>From the field</h2>
+    <p class="body-text">Every ranked match ends with one of three verdicts. These are pulled from live PPSSPP simulation output.</p>
+    <div class="results-tabs">
+      <button class="rtab active" data-type="victory">VICTORY</button>
+      <button class="rtab" data-type="defeat">DEFEAT</button>
+      <button class="rtab" data-type="draw">DRAW</button>
+    </div>
+    <div class="results-carousel">
+      <button class="rcarousel-arrow rcarousel-prev" aria-label="Previous">&#8249;</button>
+      <div class="rcarousel-track" id="rcarousel-track"></div>
+      <button class="rcarousel-arrow rcarousel-next" aria-label="Next">&#8250;</button>
+    </div>
+    <div class="rcarousel-dots" id="rcarousel-dots"></div>
+  </section>
+
+  <script>
+  (function() {
+    var SETS = {
+      victory: 7,
+      defeat:  4,
+      draw:    3
+    };
+    var current = { type: 'victory', idx: 0 };
+    var timer = null;
+    var INTERVAL = 4000;
+
+    function imgPath(type, n) {
+      return 'assets/ffpl_result_' + type + '_0' + n + '.png';
+    }
+
+    function render(type, idx) {
+      var track = document.getElementById('rcarousel-track');
+      var dots  = document.getElementById('rcarousel-dots');
+      var count = SETS[type];
+      track.innerHTML = '<img src="' + imgPath(type, idx + 1) + '" alt="' + type.toUpperCase() + ' result screen ' + (idx + 1) + '" class="rcarousel-img" />';
+      dots.innerHTML = '';
+      for (var i = 0; i < count; i++) {
+        var d = document.createElement('button');
+        d.className = 'rdot' + (i === idx ? ' active' : '');
+        d.setAttribute('data-i', i);
+        d.setAttribute('aria-label', 'Slide ' + (i + 1));
+        dots.appendChild(d);
+      }
+    }
+
+    function goTo(type, idx) {
+      current.type = type;
+      current.idx  = idx;
+      render(type, idx);
+    }
+
+    function advance() {
+      var count = SETS[current.type];
+      goTo(current.type, (current.idx + 1) % count);
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      timer = setInterval(advance, INTERVAL);
+    }
+
+    // Tab clicks
+    document.querySelectorAll('.rtab').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.rtab').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        goTo(btn.dataset.type, 0);
+        resetTimer();
+      });
+    });
+
+    // Arrow clicks
+    document.querySelector('.rcarousel-prev').addEventListener('click', function() {
+      var count = SETS[current.type];
+      goTo(current.type, (current.idx - 1 + count) % count);
+      resetTimer();
+    });
+    document.querySelector('.rcarousel-next').addEventListener('click', function() {
+      advance();
+      resetTimer();
+    });
+
+    // Dot clicks
+    document.getElementById('rcarousel-dots').addEventListener('click', function(e) {
+      var btn = e.target.closest('.rdot');
+      if (!btn) return;
+      goTo(current.type, parseInt(btn.dataset.i, 10));
+      resetTimer();
+    });
+
+    // Init
+    goTo('victory', 0);
+    resetTimer();
+  })();
+  </script>
 
   <div class="divider"><img src="assets/ffpl_header_strip.png" alt="" aria-hidden="true" /></div>
 
