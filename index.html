@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- REDESIGNED: larger fonts, Arch-Nexus glass aesthetic, setup guide, accurate copy -->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -42,34 +43,35 @@
       gap: 1.5rem;
     }
     .nav-logo {
-      font-size: 0.6rem;
+      font-size: 0.8rem;
       font-weight: 900;
       letter-spacing: 4px;
       color: var(--white);
       margin-right: auto;
+      text-decoration: none;
     }
     .nav-logo span { color: var(--red); }
     nav a {
-      font-size: 0.55rem;
+      font-size: 0.75rem;
       font-weight: 700;
-      letter-spacing: 3px;
+      letter-spacing: 2.5px;
       color: var(--dark-silver);
       text-decoration: none;
       transition: color 0.2s;
     }
     nav a:hover { color: var(--blue); }
     .btn-nav {
-      font-size: 0.55rem;
+      font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 2px;
-      padding: 6px 16px;
+      padding: 8px 20px;
       border: 1.5px solid var(--blue);
       color: var(--blue);
       text-decoration: none;
-      border-radius: 2px;
-      transition: background 0.2s, color 0.2s;
+      border-radius: 3px;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
     }
-    .btn-nav:hover { background: var(--blue); color: var(--black); }
+    .btn-nav:hover { background: var(--blue); color: var(--black); box-shadow: 0 0 18px rgba(42,170,233,0.55); }
 
     /* ── HERO ── */
     .hero {
@@ -92,11 +94,22 @@
       pointer-events: none;
     }
     .hero-eyebrow {
-      font-size: 0.5rem;
+      font-size: 0.75rem;
       letter-spacing: 6px;
       color: var(--red);
       font-weight: 700;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.4rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .pulse-dot {
+      display: inline-block; width: 8px; height: 8px;
+      background: var(--red); border-radius: 50%;
+      box-shadow: 0 0 6px var(--red);
+      animation: pulse-anim 1.8s infinite;
+    }
+    @keyframes pulse-anim {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.7); }
     }
     .hero h1 {
       font-size: clamp(2.4rem, 6vw, 5rem);
@@ -111,8 +124,8 @@
       color: var(--blue);
     }
     .hero-sub {
-      font-size: clamp(0.85rem, 1.8vw, 1.1rem);
-      color: var(--dark-silver);
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      color: var(--light-silver);
       max-width: 52ch;
       line-height: 1.7;
       margin-bottom: 2.5rem;
@@ -121,22 +134,22 @@
     .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 0.6rem;
+      font-size: 0.85rem;
       font-weight: 800;
-      letter-spacing: 3px;
+      letter-spacing: 2.5px;
       padding: 14px 28px;
       background: var(--blue);
       color: var(--black);
       text-decoration: none;
-      border-radius: 2px;
-      transition: background 0.2s, transform 0.1s;
+      border-radius: 3px;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
     }
-    .btn-primary:hover { background: var(--ice); transform: translateY(-1px); }
+    .btn-primary:hover { background: var(--ice); box-shadow: 0 0 18px rgba(42,170,233,0.55); transform: translateY(-2px); }
     .btn-secondary {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 0.6rem;
+      font-size: 0.85rem;
       font-weight: 700;
-      letter-spacing: 3px;
+      letter-spacing: 2.5px;
       padding: 14px 28px;
       border: 1.5px solid var(--dark-silver);
       color: var(--light-silver);
@@ -150,7 +163,7 @@
       display: flex; align-items: center; gap: 0.75rem;
     }
     .hero-badge span {
-      font-size: 0.45rem;
+      font-size: 0.7rem;
       letter-spacing: 2px;
       color: var(--dark-silver);
     }
@@ -164,7 +177,7 @@
     /* ── SECTION BASE ── */
     section { padding: 5rem 4rem; }
     .section-label {
-      font-size: 0.45rem;
+      font-size: 0.7rem;
       letter-spacing: 5px;
       color: var(--red);
       font-weight: 700;
@@ -177,9 +190,9 @@
       margin-bottom: 1rem;
     }
     .body-text {
-      font-size: 0.95rem;
-      line-height: 1.8;
-      color: var(--dark-silver);
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--light-silver);
       max-width: 64ch;
     }
 
@@ -206,7 +219,7 @@
       letter-spacing: -1px;
     }
     .about-stat .label {
-      font-size: 0.5rem;
+      font-size: 0.7rem;
       letter-spacing: 3px;
       color: var(--dark-silver);
       font-weight: 700;
@@ -216,33 +229,46 @@
     .features { background: var(--black); }
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
       margin-top: 2.5rem;
-      border: 1.5px solid rgba(42,170,233,0.15);
     }
     .feature-card {
-      background: var(--slate);
+      background: rgba(30,30,30,0.85);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid var(--dark-silver);
+      border-left: 4px solid var(--blue);
+      border-top: 1.5px solid var(--light-silver);
+      border-radius: 5px;
       padding: 2rem 1.75rem;
-      border: none;
-      transition: background 0.2s;
+      position: relative;
+      box-shadow: inset 0 20px 50px rgba(0,0,0,0.5), inset 0 0 5px var(--light-silver), 0 5px 15px rgba(0,0,0,0.8);
+      transition: transform 0.2s;
     }
-    .feature-card:hover { background: #272727; }
+    .feature-card:hover { transform: translateY(-3px); }
+    .feature-card::after {
+      content: "";
+      position: absolute; top: 6px; right: 6px;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--dark-silver);
+      box-shadow: inset 1px 1px 2px rgba(255,255,255,0.5), inset -1px -1px 2px rgba(0,0,0,0.8);
+    }
     .feature-icon {
       font-size: 1.4rem;
       margin-bottom: 1rem;
     }
     .feature-title {
-      font-size: 0.55rem;
+      font-size: 0.8rem;
       font-weight: 800;
-      letter-spacing: 3px;
+      letter-spacing: 2.5px;
       margin-bottom: 0.75rem;
       color: var(--white);
     }
     .feature-desc {
-      font-size: 0.85rem;
+      font-size: 0.95rem;
       color: var(--dark-silver);
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
     /* ── HOW IT WORKS ── */
@@ -270,15 +296,15 @@
       padding-top: 3px;
     }
     .step-content h3 {
-      font-size: 0.55rem;
+      font-size: 0.85rem;
       font-weight: 700;
       letter-spacing: 2px;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
     }
     .step-content p {
-      font-size: 0.85rem;
+      font-size: 1rem;
       color: var(--dark-silver);
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     /* ── TIERS ── */
@@ -298,7 +324,7 @@
     .tier-card.premium  { border-color: var(--blue); }
     .tier-card.elite    { border-color: var(--gold); }
     .tier-name {
-      font-size: 0.5rem;
+      font-size: 0.8rem;
       font-weight: 800;
       letter-spacing: 4px;
       margin-bottom: 0.5rem;
@@ -312,7 +338,7 @@
       margin-bottom: 0.25rem;
     }
     .tier-slots-label {
-      font-size: 0.45rem;
+      font-size: 0.7rem;
       letter-spacing: 2px;
       color: var(--dark-silver);
       margin-bottom: 1rem;
@@ -345,15 +371,15 @@
       margin-bottom: 1rem;
     }
     .os-badge {
-      font-size: 0.45rem;
+      font-size: 0.72rem;
       letter-spacing: 2px;
       color: var(--dark-silver);
       border: 1px solid rgba(255,255,255,0.1);
-      padding: 4px 10px;
-      border-radius: 2px;
+      padding: 5px 14px;
+      border-radius: 3px;
     }
     .download-note {
-      font-size: 0.7rem;
+      font-size: 0.85rem;
       color: var(--dark-silver);
     }
 
@@ -369,21 +395,22 @@
       gap: 1rem;
     }
     .footer-logo {
-      font-size: 0.5rem;
+      font-size: 0.8rem;
       font-weight: 900;
       letter-spacing: 4px;
     }
     .footer-logo span { color: var(--red); }
-    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
     .footer-links a {
-      font-size: 0.45rem;
+      font-size: 0.72rem;
       letter-spacing: 2px;
       color: var(--dark-silver);
       text-decoration: none;
+      transition: color 0.2s;
     }
     .footer-links a:hover { color: var(--blue); }
     .footer-copy {
-      font-size: 0.45rem;
+      font-size: 0.65rem;
       letter-spacing: 1px;
       color: #444;
     }
@@ -394,27 +421,121 @@
       background: linear-gradient(90deg, transparent, rgba(42,170,233,0.3), transparent);
       margin: 0 4rem;
     }
+
+    /* ── BUTTON VARIANTS ── */
+    .btn-red {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      padding: 14px 28px;
+      background: rgba(227,10,1,0.12);
+      color: var(--white);
+      border: 1.5px solid var(--red);
+      text-decoration: none;
+      text-transform: uppercase;
+      border-radius: 3px;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+    }
+    .btn-red:hover { background: rgba(227,10,1,0.25); box-shadow: 0 0 18px rgba(227,10,1,0.55); transform: translateY(-2px); }
+
+    /* ── SETUP GUIDE ── */
+    .setup { background: var(--slate); border-top: 1px solid rgba(42,170,233,0.15); }
+    .setup-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.75rem;
+      margin-top: 2.5rem;
+    }
+    @media (max-width: 900px) { .setup-grid { grid-template-columns: 1fr; } }
+    .setup-step {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 1.25rem;
+      align-items: start;
+      padding: 1.75rem;
+      background: rgba(30,30,30,0.85);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid var(--dark-silver);
+      border-left: 4px solid var(--blue);
+      border-top: 1.5px solid var(--light-silver);
+      border-radius: 5px;
+      position: relative;
+      box-shadow: inset 0 20px 50px rgba(0,0,0,0.5), inset 0 0 5px var(--light-silver), 0 5px 15px rgba(0,0,0,0.8);
+    }
+    .setup-step::after {
+      content: "";
+      position: absolute; top: 6px; right: 6px;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--dark-silver);
+      box-shadow: inset 1px 1px 2px rgba(255,255,255,0.5), inset -1px -1px 2px rgba(0,0,0,0.8);
+    }
+    .setup-step-num {
+      font-size: 2rem;
+      font-weight: 900;
+      color: rgba(42,170,233,0.22);
+      line-height: 1;
+      padding-top: 4px;
+      text-align: right;
+    }
+    .setup-step-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .setup-step-desc { font-size: 0.95rem; color: var(--dark-silver); line-height: 1.7; }
+    .step-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 2px;
+      margin-top: 0.5rem;
+      font-weight: 700;
+    }
+    .tag-blue { background: rgba(42,170,233,0.15); color: var(--blue); border: 1px solid rgba(42,170,233,0.3); }
+    .tag-red  { background: rgba(227,10,1,0.12); color: var(--red); border: 1px solid rgba(227,10,1,0.3); }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--slate); border-radius: 10px; }
+
+    @media (max-width: 768px) {
+      section { padding: 4rem 2rem; }
+      .hero { padding: 7rem 2rem 3rem; }
+      .divider { margin: 0 2rem; }
+      footer { padding: 2rem; flex-direction: column; align-items: flex-start; }
+      nav { padding: 0 1.25rem; gap: 1rem; }
+    }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
   <nav>
-    <span class="nav-logo"><span>◈</span> FORMULA FRONT PRO LEAGUE</span>
+    <a href="/" class="nav-logo" style="text-decoration:none;"><span>◈</span> FFPL</a>
     <a href="#about">ABOUT</a>
     <a href="#features">FEATURES</a>
-    <a href="#download">ARCHITECT NEXUS</a>
-    <a href="/hq/" class="btn-nav">ENTER HQ</a>
+    <a href="#setup">SETUP</a>
+    <a href="#download">DOWNLOAD</a>
+    <a href="https://discord.gg/YwFpyAq2KK" target="_blank">DISCORD</a>
+    <a href="/hq/" class="btn-nav">ENTER HQ ◈</a>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <p class="hero-eyebrow">◈ SEASON 1 NOW OPEN</p>
+    <p class="hero-eyebrow"><span class="pulse-dot"></span> SEASON 1 NOW OPEN</p>
     <h1>THE PREMIER <em>ARMORED CORE</em> COMBAT LEAGUE</h1>
     <p class="hero-sub">
-      Formula Front Pro League is the competitive circuit for Armored Core: Formula Front — Extreme Battle,
-      the PSP's only team-based autonomous AC combat game. Submit your loadout, climb the ranked ladder,
-      and prove your build against the best architects in the field.
+      Formula Front Pro League is the competitive circuit for <strong style="color:var(--ice)">Armored Core: Formula Front &mdash; Extreme Battle</strong>.
+      Build and tune your Armored Core, sync your loadout, and compete for ranked standing.
+      Climb the leaderboard and prove your build against the best architects in the field.
     </p>
     <div class="hero-ctas">
       <a href="#download" class="btn-primary">⬇ GET ARCHITECT NEXUS</a>
@@ -435,21 +556,23 @@
   <!-- ABOUT -->
   <section class="about" id="about">
     <p class="section-label">◈ WHAT IS FFPL</p>
-    <h2>A league built for serious architects</h2>
+    <h2>Build. Tune. Compete.</h2>
     <p class="body-text">
-      FFPL is the governing body for competitive Formula Front: Extreme Battle on PSP.
-      This site is League HQ — the official record of standings, sanctioned events, and commissioner decisions.
+      Formula Front Pro League is the official ranked circuit for
+      <strong style="color:var(--ice)">Armored Core: Formula Front &mdash; Extreme Battle</strong> on PSP.
+      Design and tune your Armored Core, sync your loadout to your architect profile,
+      and compete in sanctioned matches through Architect Nexus.
     </p>
-    <p class="body-text" style="margin-top:1rem;">
-      Players participate through <strong style="color:var(--ice)">Architect Nexus</strong> — the dedicated client
-      that reads your save file, verifies your AC loadout, and connects you to the league server.
-      Matches run through PPSSPP with full replay capture. Standings use Glicko-2, updated after every sanctioned result.
+    <p class="body-text" style="margin-top:1.25rem;">
+      Players compete through <strong style="color:var(--ice)">Architect Nexus</strong> &mdash; the dedicated client
+      for uploading your save file, managing your garage, issuing challenges, and tracking your standing.
+      Standings use Glicko-2, updated after every sanctioned result.
     </p>
     <div class="about-grid">
       <div class="about-stat"><span class="num">Glicko-2</span><span class="label">RATING SYSTEM</span></div>
-      <div class="about-stat"><span class="num">Live</span><span class="label">CHALLENGE SYSTEM</span></div>
+      <div class="about-stat"><span class="num">5v5</span><span class="label">TEAM FORMAT</span></div>
       <div class="about-stat"><span class="num">Verified</span><span class="label">SAVE-FILE LOADOUTS</span></div>
-      <div class="about-stat"><span class="num">Licensed</span><span class="label">COMMISSIONER OVERSIGHT</span></div>
+      <div class="about-stat"><span class="num">US·JP·EU</span><span class="label">REGIONAL SAVES</span></div>
     </div>
   </section>
 
@@ -503,13 +626,77 @@
         <div class="feature-icon">🖥</div>
         <p class="feature-title">ARCHITECT NEXUS CLIENT</p>
         <p class="feature-desc">
-          The Architect Nexus desktop app orchestrates PPSSPP directly — launching
-          instances, tiling spectator windows, and reporting match results to the
-          FFPL server automatically. A web client is also available.
+          Architect Nexus is your hub for FFPL. Upload your save file, manage your garage,
+          track standings, and handle challenges from the desktop or web client &mdash; no extra tools required.
         </p>
       </div>
     </div>
   </section>
+
+  <!-- SETUP GUIDE -->
+  <section class="setup" id="setup">
+    <p class="section-label">◈ GET SET UP</p>
+    <h2>Getting started with FFPL</h2>
+    <p class="body-text">
+      All you need is your PSP or PPSSPP save file and a league account.
+      Upload your save, register your loadout, and you're on the ladder.
+    </p>
+    <div class="setup-grid">
+      <div class="setup-step">
+        <span class="setup-step-num">01</span>
+        <div>
+          <div class="setup-step-title">Create your HQ account</div>
+          <div class="setup-step-desc">
+            Register at <a href="/hq/" style="color:var(--blue)">ffplhq.com/hq/</a> with an email and password.
+            This is your architect profile — it holds your challenge mode, Glicko-2 rating, and full match history.
+          </div>
+          <span class="step-tag tag-blue">Free Account</span>
+        </div>
+      </div>
+      <div class="setup-step">
+        <span class="setup-step-num">02</span>
+        <div>
+          <div class="setup-step-title">Upload your save file</div>
+          <div class="setup-step-desc">
+            In the <strong>Hangar</strong> tab, upload your PSP or PPSSPP save file.
+            Your AC loadout is read from the save, verified, and registered to your architect profile automatically.
+            US, JP, and EU saves are all supported.
+          </div>
+          <span class="step-tag tag-blue">Hangar Tab</span>
+        </div>
+      </div>
+      <div class="setup-step">
+        <span class="setup-step-num">03</span>
+        <div>
+          <div class="setup-step-title">Set your challenge mode</div>
+          <div class="setup-step-desc">
+            In the <strong>Profile</strong> tab, set your challenge mode to <em>Open</em> to appear on
+            the leaderboard and accept incoming challenges. Use <em>Vacation</em> mode to pause
+            without affecting your rating deviation.
+          </div>
+          <span class="step-tag tag-blue">Profile Tab</span>
+        </div>
+      </div>
+      <div class="setup-step">
+        <span class="setup-step-num">04</span>
+        <div>
+          <div class="setup-step-title">Issue or accept a challenge</div>
+          <div class="setup-step-desc">
+            Find an architect on the <strong>Leaderboard</strong> within your standing range and send a ranked challenge.
+            Once a match is run and reported, ratings update immediately.
+          </div>
+          <span class="step-tag tag-blue">Leaderboard Tab</span>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:2.5rem; display:flex; gap:1.25rem; flex-wrap:wrap;">
+      <a href="/hq/" class="btn-primary">◈ Register at HQ</a>
+      <a href="#download" class="btn-secondary">⬇ Get Architect Nexus</a>
+      <a href="https://discord.gg/YwFpyAq2KK" target="_blank" class="btn-secondary">Discord for Help</a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
 
   <!-- HOW IT WORKS -->
   <section class="how">
@@ -526,8 +713,8 @@
       <div class="step">
         <span class="step-num">02</span>
         <div class="step-content">
-          <h3>SYNC YOUR ARMORED CORE</h3>
-          <p>Open Architect Nexus (desktop or web), drop in your PPSSPP save file, and your AC loadout is extracted, hashed, and bound to your architect account automatically.</p>
+          <h3>UPLOAD YOUR SAVE FILE</h3>
+          <p>In the Hangar tab, upload your PSP or PPSSPP save file. Your AC loadout is read, verified, and registered to your profile automatically. US, JP, and EU saves are all supported.</p>
         </div>
       </div>
       <div class="step">
@@ -540,8 +727,8 @@
       <div class="step">
         <span class="step-num">04</span>
         <div class="step-content">
-          <h3>RUN THE MATCH</h3>
-          <p>Architect Nexus launches both AC instances in PPSSPP, captures the result, and posts it to the FFPL server. Ratings update immediately on the league leaderboard.</p>
+          <h3>RESULTS &amp; RATINGS UPDATE</h3>
+          <p>Once a match is run and submitted, the result is recorded and both architects' Glicko-2 ratings update immediately on the leaderboard.</p>
         </div>
       </div>
     </div>
@@ -591,35 +778,48 @@
     <p class="section-label" style="text-align:center;">◈ GET STARTED</p>
     <h2>Get Architect Nexus</h2>
     <p class="body-text">
-      Architect Nexus is your client for competing in FFPL. The desktop app gives you save-file sync,
-      automated challenge submission, and full PPSSPP integration. A web client is also available — no install required.
+      Architect Nexus is your client for competing in FFPL. Upload your save file, manage your
+      garage and challenges, and track your standing — all in one place.
+      A web client is also available with no install required.
     </p>
     <div class="download-badges">
       <span class="os-badge">WINDOWS 10/11 x64</span>
+      <span class="os-badge">LINUX x64</span>
       <span class="os-badge">WEB CLIENT</span>
     </div>
     <div class="hero-ctas" style="justify-content:center; margin-bottom:1.5rem;">
       <a href="https://github.com/AERProductions/ffpl/releases/latest" class="btn-primary">⬇ DOWNLOAD DESKTOP CLIENT</a>
       <a href="https://ffplhq.com/nexus/" class="btn-secondary">◈ OPEN WEB CLIENT</a>
     </div>
-    <p class="download-note">Open source · No telemetry · Requires PPSSPP for match execution</p>
+    <p class="download-note">Open source &middot; AGPL-3.0 &middot; No telemetry</p>
     <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid rgba(42,170,233,0.15);">
-      <p style="font-size:0.5rem; letter-spacing:3px; color:var(--dark-silver); margin-bottom:0.75rem;">ALREADY AN ARCHITECT?</p>
-      <a href="https://ffplhq.com/hq/" class="btn-secondary">◈ ENTER LEAGUE HQ</a>
+      <p style="font-size:0.72rem; letter-spacing:3px; color:var(--dark-silver); margin-bottom:1rem; text-transform:uppercase;">Already an architect?</p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="https://ffplhq.com/hq/" class="btn-secondary">◈ ENTER LEAGUE HQ</a>
+        <a href="https://discord.gg/YwFpyAq2KK" target="_blank" class="btn-red">Join Discord</a>
+      </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <span class="footer-logo"><span>◈</span> FFPL</span>
-    <div class="footer-links">
-      <a href="/hq/">LEAGUE HQ</a>
-      <a href="/nexus/">ARCHITECT NEXUS</a>
-      <a href="#about">ABOUT</a>
-      <a href="#download">DOWNLOAD</a>
-      <a href="https://discord.gg/YwFpyAq2KK" target="_blank">DISCORD</a>
+    <div>
+      <span class="footer-logo"><span>◈</span> FORMULA FRONT PRO LEAGUE</span>
+      <p style="font-size:0.62rem; color:#383838; line-height:1.6; max-width:54ch; margin-top:0.5rem;">
+        Unofficial fan project. Not affiliated with FromSoftware, Bandai Namco, or Sony Interactive Entertainment.
+        Armored Core is a trademark of FromSoftware, Inc.
+      </p>
     </div>
-    <span class="footer-copy">FORMULA FRONT PRO LEAGUE · LEAGUE AUTHORITY</span>
+    <div class="footer-links">
+      <a href="/hq/">HQ</a>
+      <a href="/nexus/">Nexus</a>
+      <a href="#about">About</a>
+      <a href="#setup">Setup</a>
+      <a href="#download">Download</a>
+      <a href="https://discord.gg/YwFpyAq2KK" target="_blank">Discord</a>
+      <a href="https://github.com/AERProductions/ffpl" target="_blank">GitHub</a>
+    </div>
+    <span class="footer-copy">LEAGUE AUTHORITY &middot; SEASON 1</span>
   </footer>
 
 </body>
