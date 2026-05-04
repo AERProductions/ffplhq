@@ -76,11 +76,36 @@
     /* ── HERO ── */
     .hero {
       min-height: 100vh;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: flex-start;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
       padding: 8rem 4rem 4rem;
       position: relative;
       overflow: hidden;
+      gap: 2rem;
+    }
+    .hero-content {
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: flex-start;
+    }
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      height: 100%;
+      min-height: 560px;
+      position: relative;
+    }
+    .hero-visual img {
+      max-height: 88vh;
+      max-width: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 48px rgba(42,170,233,0.25)) drop-shadow(0 0 120px rgba(0,32,99,0.6));
+      animation: hero-float 6s ease-in-out infinite;
+    }
+    @keyframes hero-float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-12px); }
     }
     .hero::before {
       content: '';
@@ -506,6 +531,10 @@
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--slate); border-radius: 10px; }
 
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+    }
     @media (max-width: 768px) {
       section { padding: 4rem 2rem; }
       .hero { padding: 7rem 2rem 3rem; }
@@ -530,24 +559,29 @@
 
   <!-- HERO -->
   <section class="hero">
-    <p class="hero-eyebrow"><span class="pulse-dot"></span> SEASON 1 NOW OPEN</p>
-    <h1>THE PREMIER <em>ARMORED CORE</em> COMBAT LEAGUE</h1>
-    <p class="hero-sub">
-      Formula Front Pro League is the competitive circuit for <strong style="color:var(--ice)">Armored Core: Formula Front &mdash; Extreme Battle</strong>.
-      Build and tune your Armored Core, sync your loadout, and compete for ranked standing.
-      Climb the leaderboard and prove your build against the best architects in the field.
-    </p>
-    <div class="hero-ctas">
-      <a href="#download" class="btn-primary">⬇ GET ARCHITECT NEXUS</a>
-      <a href="/hq/" class="btn-secondary">◈ ENTER LEAGUE HQ</a>
+    <div class="hero-content">
+      <p class="hero-eyebrow"><span class="pulse-dot"></span> SEASON 1 NOW OPEN</p>
+      <h1>THE PREMIER <em>ARMORED CORE</em> COMBAT LEAGUE</h1>
+      <p class="hero-sub">
+        Formula Front Pro League is the competitive circuit for <strong style="color:var(--ice)">Armored Core: Formula Front &mdash; Extreme Battle</strong>.
+        Build and tune your Armored Core, sync your loadout, and compete for ranked standing.
+        Climb the leaderboard and prove your build against the best architects in the field.
+      </p>
+      <div class="hero-ctas">
+        <a href="#download" class="btn-primary">⬇ GET ARCHITECT NEXUS</a>
+        <a href="/hq/" class="btn-secondary">◈ ENTER LEAGUE HQ</a>
+      </div>
+      <div class="hero-badge">
+        <div class="dot"></div>
+        <span>PLAY VIA ARCHITECT NEXUS</span>
+        <div class="dot"></div>
+        <span>GLICKO-2 RATED</span>
+        <div class="dot"></div>
+        <span>COMMISSIONER-SANCTIONED EVENTS</span>
+      </div>
     </div>
-    <div class="hero-badge">
-      <div class="dot"></div>
-      <span>PLAY VIA ARCHITECT NEXUS</span>
-      <div class="dot"></div>
-      <span>GLICKO-2 RATED</span>
-      <div class="dot"></div>
-      <span>COMMISSIONER-SANCTIONED EVENTS</span>
+    <div class="hero-visual">
+      <img src="ac_hero.png" alt="Unmanned Armored Core combat mech" width="896" height="1024" />
     </div>
   </section>
 
