@@ -6,6 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Formula Front Pro League — Competitive AC Combat</title>
   <meta name="description" content="The premier competitive league for Formula Front: Extreme Battle. Play through Architect Nexus — ranked AC combat, commissioner-run events, and save-file verified loadouts." />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta property="og:title" content="Formula Front Pro League" />
+  <meta property="og:description" content="The premier automated ranked circuit for Armored Core: Formula Front. Program your AC, upload your save, and watch it fight." />
+  <meta property="og:image" content="https://ffplhq.com/assets/ffpl_og_social.png" />
+  <meta property="og:image:width" content="1216" />
+  <meta property="og:image:height" content="640" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ffplhq.com/assets/ffpl_og_social.png" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -442,9 +451,20 @@
 
     /* ── DIVIDER ── */
     .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(42,170,233,0.3), transparent);
-      margin: 0 4rem;
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0;
+      padding: 0;
+      line-height: 0;
+    }
+    .divider img {
+      width: 100%;
+      height: 60px;
+      object-fit: cover;
+      object-position: center bottom;
+      display: block;
+      opacity: 0.75;
     }
 
     /* ── BUTTON VARIANTS ── */
@@ -585,7 +605,7 @@
     </div>
   </section>
 
-  <div class="divider"></div>
+  <div class="divider"><img src="assets/ffpl_header_strip.png" alt="" aria-hidden="true" /></div>
 
   <!-- ABOUT -->
   <section class="about" id="about">
@@ -732,7 +752,7 @@
     </div>
   </section>
 
-  <div class="divider"></div>
+  <div class="divider"><img src="assets/ffpl_header_strip.png" alt="" aria-hidden="true" /></div>
 
   <!-- HOW IT WORKS -->
   <section class="how">
